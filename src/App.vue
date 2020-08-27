@@ -1,32 +1,35 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+    <app-bar></app-bar>
+    <v-main>
+      <hero-section></hero-section>
+      <bird-results></bird-results>
+    </v-main>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import { mapActions, mapState } from 'vuex'
+import AppBar from './components/AppBar'
+import HeroSection from './components/HeroSection'
+import BirdResults from './components/BirdResults'
 
-#nav {
-  padding: 30px;
-}
+export default {
+  name: 'App',
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+  components: {
+    AppBar,
+    HeroSection,
+    BirdResults
+  },
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+  data: () => ({
+    //
+  }),
+  methods: mapActions(['searchBirds']),
+  computed: mapState(['birds']),
+  created(){
+    this.searchBirds()
+  }
+};
+</script>
