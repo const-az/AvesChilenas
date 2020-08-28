@@ -49,6 +49,11 @@
             <p class="text-justify text-body-2 px-2">{{birds.habitat}}</p>
             <v-img :src="birds.map.image" class="mx-auto" max-width="200px"></v-img>
           </div>
+          <div v-else class="mb-8">
+            <v-chip dark small color="red" class="mb-2 font-weight-bold">Hábitat</v-chip>
+            <p class="text-justify text-body-2 px-2">{{birds.map.title}}</p>
+            <v-img :src="birds.map.image" class="mx-auto" max-width="200px"></v-img>
+          </div>
           <div v-if="birds.iucn.title" class="mb-8">
             <v-chip dark small color="red" class="mb-2 font-weight-bold">Peligro de extinción</v-chip>
             <p class="font-weight-bold text-body-2 mb-0 px-2">{{birds.iucn.title}}</p>

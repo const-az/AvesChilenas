@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import NotFound from '../views/NotFound'
 
 Vue.use(VueRouter)
 
@@ -12,9 +13,14 @@ Vue.use(VueRouter)
     component: Home
   },
   {
-    path: '/:name',
+    path: '/ave/:name',
     name: 'onebird',
     component: () => import(/* webpackChunkName: "onebird" */ '../views/OneBird.vue')
+  },
+  {
+    path: '*',
+    name: 'notfound',
+    component: NotFound
   }
 ]
 
