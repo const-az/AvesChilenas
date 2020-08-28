@@ -8,8 +8,8 @@
       </v-overlay>
       <p class="text-caption text-center"><span class="font-italic text-body-2">{{birds.name.latin}}</span><span class="mx-2 mx-md-5">|</span>{{birds.name.english}}</p>
       <v-row class="mt-md-10">
-        <v-col cols="12" md="6" class="px-md-10">
-          <v-simple-table dense class="text-center mb-8">
+        <v-col cols="12" md="6" class="px-md-10 text-center">
+          <v-simple-table dense class="mb-8">
             <tbody>
               <tr>
                 <td class="font-weight-bold">Tamaño</td>
@@ -25,6 +25,11 @@
               </tr>
             </tbody>
           </v-simple-table>
+          <audio id="birdsound" :src="birds.audio.file"></audio>
+          <v-btn small outlined rounded class="mb-8 pa-4" color="red" @click="play" v-if="birds.audio.file">
+            {{ playing ? 'Pausar' : 'Escuchar'}}
+            <v-icon class="ml-1">{{ playing ? 'mdi-music-note-off' : 'mdi-music-note'}}</v-icon>  
+          </v-btn>
           <v-carousel cycle height="400" class="rounded-sm" hide-delimiters :show-arrows="false" :class="birds.images.gallery.length<=1 ? 'hidden-sm-and-down' : ''">
             <v-carousel-item
               v-for="(img,i) in birds.images.gallery"
@@ -66,17 +71,28 @@ export default {
   },
   data() {
     return {
-      audio: undefined
+      playing: false
     }
   },
   methods: {
+    play(){
+      var sound = document.getElementById('birdsound');
+      if(this.playing==false){
+        sound.play()
+        this.playing = true
+      } else{
+        sound.pause()
+        sound.currentTime = 0
+        this.playing = false
+      }
+    },
     ...mapActions(['searchBirds'])
   },
   computed: mapState(['birds','loading']),
   created(){
     let route = this.$route.params.name;
     this.searchBirds(route)
-  }
+  },
 }
 </script>
 
