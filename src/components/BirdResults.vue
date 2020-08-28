@@ -8,8 +8,11 @@
       <v-divider class="mb-4"></v-divider>
     </div>
     <v-row>
+      <v-overlay :value="loading" :absolute="true" opacity="0">
+        <v-progress-circular indeterminate size="64" color="red"></v-progress-circular>
+      </v-overlay>
       <v-col cols="12" sm="6" md="4" v-for="(bird, index) in filterBirds" :key="index">
-        <v-card flat>
+        <v-card flat :to="{ name: 'onebird', params: { name: bird.uid} }">
           <v-img
             class="white--text align-end"
             height="300px"
@@ -23,9 +26,6 @@
         </v-card>
       </v-col>
     </v-row>
-    <v-overlay :value="loading" absolute opacity="0">
-      <v-progress-circular indeterminate size="64" color="red"></v-progress-circular>
-    </v-overlay>
     <div v-if="!loading && filterBirds.length==0" class="text-center pt-10">
       <v-icon x-large color="red" class="mb-5">mdi-alert-circle-outline</v-icon>
       <p class="text-h5 font-weight-medium">No existen resultados para <span class="font-italic">{{search}}</span></p>

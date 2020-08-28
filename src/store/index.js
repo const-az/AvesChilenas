@@ -17,9 +17,10 @@ export default new Vuex.Store({
     NOT_LOADING(state){ state.loading = false}
   },
   actions: {
-    searchBirds({commit}){
+    searchBirds({commit}, id){
+      let bird = id ? id : ''
       commit('IS_LOADING')
-      axios.get('https://aves.ninjas.cl/api/birds')
+      axios.get(`https://aves.ninjas.cl/api/birds/${bird}`)
       .then( (response) => {
         commit('SAVE_BIRDS', response.data)
         commit('NOT_LOADING')

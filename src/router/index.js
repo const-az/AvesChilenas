@@ -7,9 +7,15 @@ Vue.use(VueRouter)
   const routes = [
   {
     path: '/',
+    alias: '/home',
     name: 'Home',
     component: Home
   },
+  {
+    path: '/:name',
+    name: 'onebird',
+    component: () => import(/* webpackChunkName: "onebird" */ '../views/OneBird.vue')
+  }
 ]
 
 const router = new VueRouter({
