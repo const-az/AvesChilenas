@@ -1,17 +1,24 @@
 <template>
   <v-container>
+    <div v-if="!loading && !filterBirds.length==0">
+      <p class="text-center text-body-1 text-sm-body-2 py-4">
+        <span class="font-weight-bold">¡Encuentra todo la información que buscas! </span>
+        Clickea el ave que desees para obtener más información sobre él.
+      </p>
+      <v-divider class="mb-4"></v-divider>
+    </div>
     <v-row>
-      <v-col cols="12" md="4" v-for="(bird, index) in filterBirds" :key="index">
-        <v-card outlined>
+      <v-col cols="12" sm="6" md="4" v-for="(bird, index) in filterBirds" :key="index">
+        <v-card flat>
           <v-img
             class="white--text align-end"
             height="300px"
             :src="bird.images.main"
             position="top"
-            gradient="to top, rgba(0,0,0,.3), rgba(255,255,255,0)"
+            gradient="to top, rgba(0,0,0,.4), rgba(255,255,255,0)"
           >
-            <v-card-title>{{bird.name.spanish}}</v-card-title>
-            <v-card-subtitle class="white--text font-weight-bold">{{bird.name.latin}}</v-card-subtitle>
+            <v-card-title class="">{{bird.name.spanish}}</v-card-title>
+            <v-card-subtitle class="white--text font-italic">{{bird.name.latin}}</v-card-subtitle>
           </v-img>
         </v-card>
       </v-col>
@@ -20,7 +27,8 @@
       <v-progress-circular indeterminate size="64" color="red"></v-progress-circular>
     </v-overlay>
     <div v-if="!loading && filterBirds.length==0" class="text-center pt-10">
-      <p class="text-h5 font-weight-bold">No existen resultados para <span class="font-italic">{{search}}</span></p>
+      <v-icon x-large color="red" class="mb-5">mdi-alert-circle-outline</v-icon>
+      <p class="text-h5 font-weight-medium">No existen resultados para <span class="font-italic">{{search}}</span></p>
       <p class="text-body-1">Intente con otra búsqueda.</p>
     </div>
   </v-container>
