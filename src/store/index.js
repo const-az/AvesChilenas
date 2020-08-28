@@ -18,6 +18,7 @@ export default new Vuex.Store({
   },
   actions: {
     searchBirds({commit}, id){
+      commit('SAVE_BIRDS', [])
       let bird = id ? id : ''
       commit('IS_LOADING')
       axios.get(`https://aves.ninjas.cl/api/birds/${bird}`)

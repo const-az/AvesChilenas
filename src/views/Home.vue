@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <hero-section :img="img" :name="name"></hero-section>
+    <hero-section :img="img.main" :name="name"></hero-section>
     <bird-results></bird-results>
   </v-main>
 </template>
@@ -18,7 +18,9 @@ export default {
   },
   data() {
     return {
-      img: 'https://cdn.download.ams.birds.cornell.edu/api/v1/asset/116095031/1800',
+      img: {
+        main: 'https://cdn.download.ams.birds.cornell.edu/api/v1/asset/116095031/1800',
+      },
       name: 'Aves chilenas'
     }
   },

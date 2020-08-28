@@ -10,7 +10,7 @@
 export default {
   props: {
     img: {
-      type: Object,
+      type: String,
       required: true
     },
     name: {

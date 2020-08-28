@@ -8,7 +8,7 @@
       <v-divider class="mb-4"></v-divider>
     </div>
     <v-row>
-      <v-overlay :value="loading" :absolute="true" opacity="0">
+      <v-overlay :value="loading" opacity="0">
         <v-progress-circular indeterminate size="64" color="red"></v-progress-circular>
       </v-overlay>
       <v-col cols="12" sm="6" md="4" v-for="(bird, index) in filterBirds" :key="index">
@@ -42,7 +42,11 @@ export default {
     ...mapState(['birds','search','loading']),
     filterBirds(){
       return this.birds.filter(b => {
-        return b.name.spanish.toLowerCase().includes(this.search.toLowerCase())
+        return (
+          b.name.spanish.toLowerCase().includes(this.search.toLowerCase()) || 
+          b.name.english.toLowerCase().includes(this.search.toLowerCase()) ||
+          b.name.latin.toLowerCase().includes(this.search.toLowerCase())
+        )
       })
     }} 
 }
