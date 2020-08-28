@@ -8,9 +8,11 @@
       <v-divider class="mb-4"></v-divider>
     </div>
     <v-row>
-      <v-overlay :value="loading" opacity="0">
-        <v-progress-circular indeterminate size="64" color="red"></v-progress-circular>
-      </v-overlay>
+      <v-card v-if="loading" class="mx-auto mt-15">
+        <v-overlay :value="loading" absolute opacity="0">
+          <v-progress-circular indeterminate size="64" color="red"></v-progress-circular>
+        </v-overlay>
+      </v-card>
       <v-col cols="12" sm="6" md="4" v-for="(bird, index) in filterBirds" :key="index">
         <v-card flat :to="{ name: 'onebird', params: { name: bird.uid} }">
           <v-img
