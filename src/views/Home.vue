@@ -24,10 +24,11 @@ export default {
       name: 'Aves chilenas'
     }
   },
-  methods: mapActions(['searchBirds']),
+  methods: mapActions(['searchBirds','updateSearch']),
   computed: mapState(['birds']),
   created(){
     this.searchBirds()
+    this.updateSearch('')
   }
 }
 </script>
